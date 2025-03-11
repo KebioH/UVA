@@ -17,13 +17,13 @@ int main() {
         int sum = k; //第一個單字完整顯示
         for (int i = 0; i < w - 1; i++) {
             int max = 0; //還是習慣給初始值 不要吝嗇
-            for (int j = 1; j <= k; j++) {
-                if (strncmp(arr[i] + k - j, arr[i + 1], j) == 0) { //學到了指標運算
+            for (int j = 1; j <= k; j++) { //j就是len 比較前len個字元
+                if (strncmp(arr[i] + k - j, arr[i + 1], j) == 0) { //學到了指標運算可以放在字串函式中
                     max = j;
                 }
             }
 
-            sum += k - max;
+            sum += k - max; // 只新增不重疊的部分
         }
         printf("%d\n", sum);
     }
