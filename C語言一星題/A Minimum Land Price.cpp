@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+//只看題目完全沒發現要幹嘛
 int compare(const void* x, const void* y) {
     return *(int*)y - *(int*)x;
 }
