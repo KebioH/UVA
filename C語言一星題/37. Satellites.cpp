@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
+//弧長 = R*theta
 //弦長 = 2*R*sin(theta/2)
 
 #define R 6440
