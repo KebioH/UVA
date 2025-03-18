@@ -16,7 +16,7 @@ int main() {
         if (nowY > birY) {
             int y = nowY - birY;
             if (nowM > birM || (nowM == birM && nowD >= birD)) {
-                if (y <= 130) {
+                if (y <= 130) { //看清楚題目
                     printf("Case #%d: %d\n", index, nowY - birY);
                 } else {
                     printf("Case #%d: Check birth date\n", index);
