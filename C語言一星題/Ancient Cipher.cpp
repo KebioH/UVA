@@ -5,6 +5,7 @@
 #include <stdbool.h>
 
 //一星題基本上看懂題目就寫得出來　重點是看不懂
+//要學會拆解題目
 
 int compare(const void* x, const void* y) {
     return *(int*)x - *(int*)y;
