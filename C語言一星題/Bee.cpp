@@ -10,7 +10,7 @@ int main() {
         while (n--) { // 費氏數列
             temp = male;
             male += female;
-            female = temp + 1; //(第一支母蜂 所以+1)
+            female = temp + 1; //第一支母蜂 所以+1 母蜂數量等於上一次公蜂的數量
         }
         printf("%lld %lld\n", male, male + female);
     }
