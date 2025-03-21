@@ -34,4 +34,3 @@ int main() {
         
     }
 }
-Slogan Learning of Princess
