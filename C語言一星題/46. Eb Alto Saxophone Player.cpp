@@ -1,61 +1,64 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <string.h>
 #include <stdbool.h>
+#include <string.h>
 
-int main()
-{
-    int n;
-    scanf("%d", &n);
+
+int main() {
+    int t;
+    scanf("%d", &t);
     getchar();
 
     char str[200];
-    int finger[] = { 0, 1, 2, 3, 4, 7, 8, 9, 10 };
-    while (n--) {
+    const int finger[] = { 0, 1, 2, 3, 4, 7, 8, 9, 10 };
+    while (t--) {
         fgets(str, sizeof(str), stdin);
-        str[strcspn(str, "\n")] = '\0';
-        if (strcmp(str, "") == 0) {
-            printf("0 0 0 0 0 0 0 0 0 0\n"); //傻眼 看到一堆0就是有空
+        if (strcmp(str, "\n") == 0) {
+            printf("0 0 0 0 0 0 0 0 0 0\n");
             continue;
         }
+
         int count[11] = { 0 };
-        bool lastTouch[11] = { false }; //紀錄上次在幹嘛
-
+        bool lastTouch[11] = { false };
         for (int i = 0; i < strlen(str); i++) {
-            bool nowTouch[11] = { false }; //紀錄現在在幹嘛
+            bool nowTouch[11] = { false };
 
-            if (str[i] >= 'c' && str[i] <= 'g') {
-                for (int j = 2; j <= 8 - (str[i] - 'c'); j++) {
-                    nowTouch[finger[j]] = true;
-                }
-            }
-            else if (str[i] == 'a') {
+            switch (str[i])
+            {
+            case 'a':
                 nowTouch[2] = true;
                 nowTouch[3] = true;
-            }
-            else if (str[i] == 'b') {
+                break;
+            case 'b':
                 nowTouch[2] = true;
-            }
-            else if (str[i] == 'C') {
+                break;
+            case 'C':
                 nowTouch[3] = true;
-            }
-            else if (str[i] >= 'D' && str[i] <= 'G') {
-                for (int j = 1; j <= 7 - (str[i] - 'D'); j++) {
-                    nowTouch[finger[j]] = true;
-                }
-            }
-            else if (str[i] == 'A') {
+                break;
+            case 'A':
                 nowTouch[1] = true;
                 nowTouch[2] = true;
                 nowTouch[3] = true;
-            }
-            else if (str[i] == 'B') {
+                break;
+            case 'B':
                 nowTouch[1] = true;
                 nowTouch[2] = true;
+                break;
+            default:
+                if (str[i] >= 'c' && str[i] <= 'g') {
+                    for (int j = 2; j <= 8 - (str[i] - 'c'); j++) {
+                        nowTouch[finger[j]] = true;
+                    }
+                }
+                else if (str[i] >= 'D' && str[i] <= 'G') {
+                    for (int j = 1; j <= 7 - (str[i] - 'D'); j++) {
+                        nowTouch[finger[j]] = true;
+                    }
+                }
+                break;
             }
 
-            //以下招數很好用 要熟悉 很像minecraft中的tag
-            if (!i) {
+            if (i == 0) {
                 for (int j = 1; j <= 10; j++) {
                     if (nowTouch[j]) {
                         count[j]++;
@@ -70,19 +73,15 @@ int main()
                 }
             }
 
-            for (int j = 1; j <= 10; j++) { //精隨 現在會變成 下一次的過去
+            for (int j = 1; j <= 10; j++) {
                 lastTouch[j] = nowTouch[j];
             }
-
-
         }
 
         for (int i = 1; i <= 10; i++) {
-            printf("%d", count[i]);
-            if (i < 10) printf(" ");
+            printf("%d ", count[i]);
         }
 
         printf("\n");
-
     }
 }
